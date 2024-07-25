@@ -1,54 +1,59 @@
-# aplicacion-reservas
-1. Arquitectura General
+Reservation Application
+General Architecture
 Frontend: React
-Objetivo: Proveer una interfaz de usuario interactiva para gestionar reservas.
-Componentes: Páginas y componentes para crear, modificar, ver y cancelar reservas.
-Estado: Manejo del estado global (usando Context API, Redux, etc.) para compartir datos entre componentes.
-Comunicación: Utiliza fetch o axios para hacer llamadas a las API del backend.
+
+Objective: Provide an interactive user interface to manage reservations.
+Components: Pages and components for creating, modifying, viewing, and canceling reservations.
+State Management: Manage global state (using Context API, Redux, etc.) to share data between components.
+Communication: Use fetch or axios for making API calls to the backend.
 Backend: Java (Spring Boot)
-Objetivo: Gestionar las solicitudes de la aplicación cliente y realizar operaciones CRUD en la base de datos.
-Componentes: Controladores (Controllers), Servicios (Services), y Repositorios (Repositories).
-API REST: Exponer endpoints para crear, leer, actualizar y eliminar reservas.
-Seguridad: Implementar autenticación y autorización.
-Base de Datos: MongoDB
-Objetivo: Almacenar los datos de las reservas, usuarios y posiblemente otros datos relacionados (mesas, habitaciones, etc.).
-Modelo de Datos: Esquemas para las reservas, usuarios y otras entidades relevantes.
-2. Detalles de Implementación
+
+Objective: Handle client application requests and perform CRUD operations on the database.
+Components: Controllers, Services, and Repositories.
+REST API: Expose endpoints to create, read, update, and delete reservations.
+Security: Implement authentication and authorization.
+Database: MongoDB
+
+Objective: Store reservation data, user information, and potentially other related data (tables, rooms, etc.).
+Data Model: Schemas for reservations, users, and other relevant entities.
+Implementation Details
 Frontend: React
-Configuración del Proyecto
 
-Inicializa un proyecto con Create React App.
-Instala dependencias necesarias: react-router-dom para enrutamiento, axios para solicitudes HTTP, etc.
-Estructura de Componentes
+Project Setup
 
-App.js: Contenedor principal con rutas.
-Componentes: ReservationList, CreateReservation, EditReservation, ReservationDetail, etc.
-Gestión de Estado
+Initialize a project with Create React App.
+Install necessary dependencies: react-router-dom for routing, axios for HTTP requests, etc.
+Component Structure
 
-Usa useState y useEffect para el estado local y efectos secundarios.
-Considera usar Context API o Redux para el estado global si la aplicación crece en complejidad.
-Comunicación con el Backend
+App.js: Main container with routes.
+Components: ReservationList, CreateReservation, EditReservation, ReservationDetail, etc.
+State Management
 
-Usa axios o fetch para hacer solicitudes a las APIs del backend.
-Ejemplo de una solicitud para obtener reservas:
+Use useState and useEffect for local state and side effects.
+Consider using Context API or Redux for global state management if the application grows in complexity.
+Communication with Backend
+
+Use axios or fetch to make requests to backend APIs.
+Example request to get reservations:
 javascript
 Copiar código
 axios.get('http://localhost:8080/api/reservations')
   .then(response => setReservations(response.data))
   .catch(error => console.error('Error fetching reservations:', error));
-Backend: Java con Spring Boot
-Configuración del Proyecto
+Backend: Java with Spring Boot
 
-Crea un proyecto Spring Boot usando Spring Initializr o tu IDE preferido.
-Incluye dependencias como Spring Web, Spring Data MongoDB, y Spring Security (si es necesario).
-Estructura de Clases
+Project Setup
 
-Controladores (Controllers): Manejan las solicitudes HTTP y responden con datos JSON.
-Servicios (Services): Contienen la lógica de negocio.
-Repositorios (Repositories): Interactúan con MongoDB.
-API REST
+Create a Spring Boot project using Spring Initializr or your preferred IDE.
+Include dependencies like Spring Web, Spring Data MongoDB, and Spring Security (if necessary).
+Class Structure
 
-Ejemplo de un controlador para manejar reservas:
+Controllers: Handle HTTP requests and respond with JSON data.
+Services: Contain business logic.
+Repositories: Interact with MongoDB.
+REST API
+
+Example of a controller for handling reservations:
 java
 Copiar código
 @RestController
@@ -68,11 +73,11 @@ public class ReservationController {
         return reservationService.save(reservation);
     }
 
-    // Otros endpoints para actualizar, eliminar, etc.
+    // Other endpoints for update, delete, etc.
 }
-Modelo de Datos
+Data Model
 
-Ejemplo de una entidad de reserva:
+Example of a reservation entity:
 java
 Copiar código
 @Document(collection = "reservations")
@@ -82,28 +87,35 @@ public class Reservation {
     private String customerName;
     private Date reservationDate;
     private int numberOfPeople;
-    // Getters y Setters
+    // Getters and Setters
 }
-Conexión a MongoDB
+MongoDB Connection
 
-Configura la conexión a MongoDB en application.properties o application.yml:
+Configure the connection to MongoDB in application.properties or application.yml:
 properties
 Copiar código
 spring.data.mongodb.uri=mongodb://localhost:27017/reservationdb
-Base de Datos: MongoDB
-Modelo de Datos
+Database: MongoDB
 
-Define los esquemas para las colecciones, como reservations, users, etc.
-Utiliza MongoDB Atlas para una instancia en la nube o una instalación local.
-Estructura de Datos
+Data Model
 
-Cada reserva podría incluir campos como customerName, reservationDate, numberOfPeople, etc.
-3. Despliegue y Seguridad
-Despliegue
+Define schemas for collections like reservations, users, etc.
+Use MongoDB Atlas for a cloud instance or a local installation.
+Data Structure
 
-Frontend: Despliega la aplicación React usando Vercel, Netlify, o cualquier otro servicio de hosting estático.
-Backend: Despliega el servicio de Java Spring Boot en Heroku, AWS, o cualquier otro proveedor de nube.
-Seguridad
+Each reservation might include fields like customerName, reservationDate, numberOfPeople, etc.
+Deployment and Security
+Deployment
 
-Implementa autenticación y autorización si la aplicación lo requiere. Por ejemplo, usando JWT (JSON Web Tokens) para manejar sesiones de usuario.
-Asegura la conexión entre frontend y backend usando HTTPS.
+Frontend: Deploy the React application using Vercel, Netlify, or any other static hosting service.
+Backend: Deploy the Java Spring Boot service on Heroku, AWS, or any other cloud provider.
+Security
+
+Implement authentication and authorization if the application requires it, using JWT (JSON Web Tokens) for managing user sessions.
+Secure the connection between frontend and backend using HTTPS.
+
+
+
+
+
+
