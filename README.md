@@ -1,121 +1,70 @@
-Reservation Application
-General Architecture
-Frontend: React
+# Getting Started with Create React App
 
-Objective: Provide an interactive user interface to manage reservations.
-Components: Pages and components for creating, modifying, viewing, and canceling reservations.
-State Management: Manage global state (using Context API, Redux, etc.) to share data between components.
-Communication: Use fetch or axios for making API calls to the backend.
-Backend: Java (Spring Boot)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Objective: Handle client application requests and perform CRUD operations on the database.
-Components: Controllers, Services, and Repositories.
-REST API: Expose endpoints to create, read, update, and delete reservations.
-Security: Implement authentication and authorization.
-Database: MongoDB
+## Available Scripts
 
-Objective: Store reservation data, user information, and potentially other related data (tables, rooms, etc.).
-Data Model: Schemas for reservations, users, and other relevant entities.
-Implementation Details
-Frontend: React
+In the project directory, you can run:
 
-Project Setup
+### `npm start`
 
-Initialize a project with Create React App.
-Install necessary dependencies: react-router-dom for routing, axios for HTTP requests, etc.
-Component Structure
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-App.js: Main container with routes.
-Components: ReservationList, CreateReservation, EditReservation, ReservationDetail, etc.
-State Management
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-Use useState and useEffect for local state and side effects.
-Consider using Context API or Redux for global state management if the application grows in complexity.
-Communication with Backend
+### `npm test`
 
-Use axios or fetch to make requests to backend APIs.
-Example request to get reservations:
-javascript
-Copiar código
-axios.get('http://localhost:8080/api/reservations')
-  .then(response => setReservations(response.data))
-  .catch(error => console.error('Error fetching reservations:', error));
-Backend: Java with Spring Boot
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Project Setup
+### `npm run build`
 
-Create a Spring Boot project using Spring Initializr or your preferred IDE.
-Include dependencies like Spring Web, Spring Data MongoDB, and Spring Security (if necessary).
-Class Structure
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Controllers: Handle HTTP requests and respond with JSON data.
-Services: Contain business logic.
-Repositories: Interact with MongoDB.
-REST API
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-Example of a controller for handling reservations:
-java
-Copiar código
-@RestController
-@RequestMapping("/api/reservations")
-public class ReservationController {
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-    @Autowired
-    private ReservationService reservationService;
+### `npm run eject`
 
-    @GetMapping
-    public List<Reservation> getAllReservations() {
-        return reservationService.findAll();
-    }
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-    @PostMapping
-    public Reservation createReservation(@RequestBody Reservation reservation) {
-        return reservationService.save(reservation);
-    }
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-    // Other endpoints for update, delete, etc.
-}
-Data Model
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-Example of a reservation entity:
-java
-Copiar código
-@Document(collection = "reservations")
-public class Reservation {
-    @Id
-    private String id;
-    private String customerName;
-    private Date reservationDate;
-    private int numberOfPeople;
-    // Getters and Setters
-}
-MongoDB Connection
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-Configure the connection to MongoDB in application.properties or application.yml:
-properties
-Copiar código
-spring.data.mongodb.uri=mongodb://localhost:27017/reservationdb
-Database: MongoDB
+## Learn More
 
-Data Model
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Define schemas for collections like reservations, users, etc.
-Use MongoDB Atlas for a cloud instance or a local installation.
-Data Structure
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-Each reservation might include fields like customerName, reservationDate, numberOfPeople, etc.
-Deployment and Security
-Deployment
+### Code Splitting
 
-Frontend: Deploy the React application using Vercel, Netlify, or any other static hosting service.
-Backend: Deploy the Java Spring Boot service on Heroku, AWS, or any other cloud provider.
-Security
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-Implement authentication and authorization if the application requires it, using JWT (JSON Web Tokens) for managing user sessions.
-Secure the connection between frontend and backend using HTTPS.
+### Analyzing the Bundle Size
 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
+### Making a Progressive Web App
 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
+### Advanced Configuration
 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
